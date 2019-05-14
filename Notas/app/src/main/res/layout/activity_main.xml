@@ -25,5 +25,8 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+
+        android:onClick="onNuevaNota"
+        />
 </android.support.constraint.ConstraintLayout>
