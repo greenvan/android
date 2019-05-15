@@ -18,7 +18,6 @@ public class EditaNotaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.i("debugtimegreenvan","Entro en oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edita_nota);
 

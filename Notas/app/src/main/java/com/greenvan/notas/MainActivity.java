@@ -118,12 +118,11 @@ public class MainActivity extends AppCompatActivity {
 
 
             Nota nota = getItem(position);
+
             TextView titulo = (TextView)result.findViewById(R.id.tv_titulo);
             titulo.setText(nota.getTitulo());
             TextView resumen = (TextView)result.findViewById(R.id.tv_resumen);
-
-            /*TODO Crear un resumen en lugar de el texto completo*/
-            resumen.setText(nota.getTexto());
+            resumen.setText(nota.getTexto().replace("\n"," "));
 
 
             return result;
