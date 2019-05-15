@@ -1,15 +1,15 @@
 package com.greenvan.notas;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 public class ListaNotas {
     private static ArrayList<Nota> notas;
 
-    public static ArrayList<Nota> get(){
+    public static ArrayList<Nota> get(Context context){
         if (notas ==null){
-            notas = new ArrayList<>();
-            notas.add(new Nota("hola","que tal"));
-            notas.add(new Nota("1234","567899fykjhk, hjkj   ihli7 86r ,j b.k -lh-ñ.oiy ñ08 79`8 88 ñ-olhlih jhvjhygjhygjuy  lvc ukyedr 5 oluf, v 9jvhjvnbv,kjfkuyu yyyyyyyyyyyyyyyyyy"));
+            notas = NotasDB.loadNotas(context);
         }
         return notas;
     }

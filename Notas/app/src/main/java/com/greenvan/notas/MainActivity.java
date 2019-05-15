@@ -75,7 +75,10 @@ public class MainActivity extends AppCompatActivity {
     private class NotasAdapter extends ArrayAdapter<Nota>{
 
         NotasAdapter() {
-            super(MainActivity.this,R.layout.item_lista_notas,ListaNotas.get());
+            super(MainActivity.this,
+                    R.layout.item_lista_notas,
+                    ListaNotas.get(MainActivity.this)
+            );
         }
 
 
