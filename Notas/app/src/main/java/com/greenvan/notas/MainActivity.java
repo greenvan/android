@@ -43,32 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-
         if (resultCode==RESULT_OK){
-
-            String titulo = data.getStringExtra("titulo");
-            String texto = data.getStringExtra("texto");
-            int position = data.getIntExtra("position",-1);
-
-
-
             switch (requestCode){
                 case NUEVA_NOTA:
-                    ListaNotas.nueva(titulo,texto);
-                    adapter.notifyDataSetChanged();
-                    break;
                 case EDITA_NOTA:
-                    ListaNotas.modifica(position,titulo,texto);
                     adapter.notifyDataSetChanged();
                     break;
                 default:
                     super.onActivityResult(requestCode, resultCode, data);
             }
-
         }
-
-
-
     }
 
     private void onEditaNota(int position) {

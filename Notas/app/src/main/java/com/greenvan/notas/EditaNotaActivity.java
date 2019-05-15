@@ -25,11 +25,12 @@ public class EditaNotaActivity extends AppCompatActivity {
         edit_texto = (EditText) findViewById(R.id.edit_texto);
 
         Intent intent = getIntent();
+        position = intent.getIntExtra("position",-1);
 
-        if(intent.hasExtra("titulo")){
-            edit_titulo.setText(intent.getStringExtra("titulo"));
-            edit_texto.setText(intent.getStringExtra("texto"));
-            position = intent.getIntExtra("position",-1);
+        if(position!=-1){
+            Nota nota = ListaNotas.getNota(position);
+            edit_titulo.setText(nota.getTitulo());
+            edit_texto.setText(nota.getTexto());
         }
     }
 
@@ -44,11 +45,14 @@ public class EditaNotaActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()){
            case R.id.guardar:
-               Intent data = new Intent();
-               data.putExtra("titulo",edit_titulo.getText().toString());
-               data.putExtra("texto",edit_texto.getText().toString());
-               if (position!=-1) data.putExtra("position",position);
-               setResult(RESULT_OK, data);
+               String titulo = edit_titulo.getText().toString();
+               String texto =edit_texto.getText().toString();
+               if (position!=-1) {
+                   ListaNotas.modifica(position,titulo,texto);
+               } else {
+                   ListaNotas.nueva(titulo,texto);
+               }
+               setResult(RESULT_OK);
                finish();
                return true;
        }
