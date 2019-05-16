@@ -3,4 +3,8 @@
     <string name="titulo">Título</string>
     <string name="escribe_la_nota">Escribe la nota &#8230;</string>
     <string name="guardar">Guardar</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirm_message">Are you sure you want to exit without saving data?</string>
+    <string name="ignore">Ignore</string>
+    <string name="continue_edit">Continue editing</string>
 </resources>
