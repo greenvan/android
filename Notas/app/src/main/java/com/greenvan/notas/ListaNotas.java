@@ -1,5 +1,7 @@
 package com.greenvan.notas;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class ListaNotas {
@@ -10,6 +12,9 @@ public class ListaNotas {
             notas = NotasDB.loadNotas();
         }
         return notas;
+    }
+    public static Nota getNota(int pos){
+        return notas.get(pos);
     }
 
     public static void nueva(String titulo, String texto) {
@@ -25,7 +30,10 @@ public class ListaNotas {
         NotasDB.actualiza(nota);
     }
 
-    public static Nota getNota(int pos){
-        return notas.get(pos);
+
+    public static void borra(int position) {
+        Nota nota = notas.get(position);
+        NotasDB.borra(nota);
+        notas.remove(position);
     }
 }

@@ -15,8 +15,6 @@ import android.widget.TextView;
 
 /*
 
-TODO: Evitar que se pierde la nota al tocar el botón Back .
-TODO: Borrar notas.
 TODO: Compartir notas (enviarlas a otra aplicación).
 TODO: Recibir un "share" de otra aplicación.
 

@@ -11,6 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import java.util.List;
+
 public class EditaNotaActivity extends AppCompatActivity {
 
     private int position = -1;
@@ -67,6 +69,20 @@ public class EditaNotaActivity extends AppCompatActivity {
                setResult(RESULT_OK);
                finish();
                return true;
+           case R.id.borrar:
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle(R.string.confirmation);
+               builder.setMessage(R.string.confirm_delete);
+               builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       ListaNotas.borra(position);
+                       setResult(RESULT_OK);
+                       finish();
+                   }
+               });
+               builder.setNegativeButton(android.R.string.cancel, null);
+               builder.create().show();
        }
 
        return super.onOptionsItemSelected(item);

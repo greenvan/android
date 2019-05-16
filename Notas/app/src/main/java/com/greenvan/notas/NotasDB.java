@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -68,11 +69,11 @@ public class NotasDB {
 
         if(c!=null && c.getCount()>0){
             while (c.moveToNext()){
-                //long id = c.getLong(c.getColumnIndexOrThrow("id"));
+                long id = c.getLong(c.getColumnIndexOrThrow("id"));
                 String titulo = c.getString(c.getColumnIndexOrThrow("titulo"));
                 String texto = c.getString(c.getColumnIndexOrThrow("texto"));
 
-                resultado.add(new Nota(titulo,texto));
+                resultado.add(new Nota(id,titulo,texto));
             }
         }
         if(c!=null) c.close();
@@ -94,6 +95,8 @@ public class NotasDB {
         long id = db.insert("Notas",null, values);
         resultado.setId(id);
 
+        db.close();
+
         return resultado;
     }
 
@@ -108,6 +111,20 @@ public class NotasDB {
         String[] args = {Long.toString(nota.getId())};
 
         db.update("Notas",values, where, args);
+        db.close();
+
+    }
+
+    public static void borra(Nota nota) {
+
+        SQLiteDatabase db = getHelper().getWritableDatabase();
+
+        String where = "id = ?";
+        String[] args = {Long.toString(nota.getId())};
+
+        db.delete("Notas", where, args);
+
+        db.close();
 
     }
 }
