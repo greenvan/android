@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        NotasDB.setContext(this);
 
         adapter = new NotasAdapter();
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         NotasAdapter() {
             super(MainActivity.this,
                     R.layout.item_lista_notas,
-                    ListaNotas.get(MainActivity.this)
+                    ListaNotas.get()
             );
         }
 

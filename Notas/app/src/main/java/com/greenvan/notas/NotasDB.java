@@ -1,5 +1,6 @@
 package com.greenvan.notas;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 
 public class NotasDB {
 
+    private static Context context;
+    public static void setContext(Context context){
+        NotasDB.context=context;
+    }
 
     static class NotasDBHelper extends SQLiteOpenHelper{
 
@@ -24,7 +29,7 @@ public class NotasDB {
 
 
 
-        public NotasDBHelper(Context context) {
+        public NotasDBHelper() {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -41,11 +46,18 @@ public class NotasDB {
 
     private static NotasDBHelper helper;
 
-    public static ArrayList<Nota> loadNotas(Context context){
+    public static NotasDBHelper getHelper(){
+        if(helper == null) {
+            helper = new NotasDBHelper();
+        }
+        return helper;
+    }
+
+    public static ArrayList<Nota> loadNotas(){
 
         ArrayList<Nota> resultado = new ArrayList<>();
         if(helper == null) {
-            helper = new NotasDBHelper(context);
+            helper = new NotasDBHelper();
         }
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -67,5 +79,35 @@ public class NotasDB {
         db.close();
 
         return resultado;
+    }
+
+
+    public static Nota nueva(String titulo, String texto) {
+        Nota resultado = new Nota(titulo,texto);
+
+        SQLiteDatabase db = getHelper().getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("titulo",titulo);
+        values.put("texto",texto);
+
+        long id = db.insert("Notas",null, values);
+        resultado.setId(id);
+
+        return resultado;
+    }
+
+    public static void actualiza(Nota nota) {
+
+        SQLiteDatabase db = getHelper().getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("titulo",nota.getTitulo());
+        values.put("texto",nota.getTexto());
+
+        String where = "id = ?";
+        String[] args = {Long.toString(nota.getId())};
+
+        db.update("Notas",values, where, args);
+
     }
 }
