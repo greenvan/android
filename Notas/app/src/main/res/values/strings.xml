@@ -9,4 +9,5 @@
     <string name="continue_edit">Continue editing</string>
     <string name="delete">Delete note</string>
     <string name="confirm_delete">Are you sure you want to delete this note?</string>
+    <string name="share">Compartir la nota</string>
 </resources>

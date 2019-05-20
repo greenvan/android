@@ -6,9 +6,15 @@
         android:id="@+id/guardar"
         android:icon="@drawable/ic_menu_done"
         android:title="@string/guardar"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/compartir"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="@string/share"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/borrar"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/delete" />
+        android:title="@string/delete"
+        app:showAsAction="never" />
 </menu>
