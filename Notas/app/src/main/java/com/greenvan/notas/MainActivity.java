@@ -13,12 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-/*
-
-TODO: Recibir un "share" de otra aplicación.
-
-
- */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 onEditaNota(position);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.notifyDataSetChanged();
     }
 
     @Override
